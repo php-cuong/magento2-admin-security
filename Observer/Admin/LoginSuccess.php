@@ -107,7 +107,7 @@ class LoginSuccess implements ObserverInterface
             'name' => $name,
             'ip_address' => $this->getIpAddress(),
             'login_url' => $this->getCurrentUrl(),
-            'referral_url' => $this->getRefererUrl(),
+            'referrer_url' => $this->getReferrerUrl(),
             'logged_in_at' => $this->getLoggedInAt(),
             'browser_information' => $this->getHttpUserAgent()
         ];
@@ -122,7 +122,7 @@ class LoginSuccess implements ObserverInterface
                 'store' => $store->getId(),
             ]
         )->setTemplateVars(
-            ['user_data' => $userData, 'store' => $store]
+            ['user' => $userData, 'store' => $store]
         )->setFrom(
             'general'
         )->addTo(
@@ -144,7 +144,12 @@ class LoginSuccess implements ObserverInterface
      */
     private function getLoggedInAt()
     {
-        return $this->_dateTimeFormater->date();
+        foreach ($this->_dateTimeFormater->date() as $key => $value) {
+            if ($key == 'date') {
+                return $value;
+            }
+        }
+        return '';
     }
 
     /**
@@ -162,7 +167,7 @@ class LoginSuccess implements ObserverInterface
      *
      * @return string
      */
-    private function getRefererUrl()
+    private function getReferrerUrl()
     {
         return !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
     }

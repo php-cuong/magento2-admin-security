@@ -23,21 +23,20 @@
 <!--@vars {
 "var store.getFrontendName()|escape":"Store Name"
 } @-->
-
 {{template config_path="design/email/header_template"}}
 
-<p>{{trans "Hello %name," name=$user_data.getName()}}</p>
+<p>{{trans "Hello %name," name=$user.getName()}}</p>
 
 <p>{{trans "You have been successfully logged in at %store_name" store_name=$store.getFrontendName()}}</p>
 
 <p>{{trans "The following information we have collected"}}:</p>
 
 <ul>
-    <li><b>{{trans "IP address"}}:</b> {{var user_data.getIpAddress()}}</li>
-    <li><b>{{trans "Browser Information"}}:</b> {{var user_data.getBrowserInformation()}}</li>
-    <li><b>{{trans "Login URL"}}:</b> {{var user_data.getLoginUrl()}}</li>
-    <li><b>{{trans "Referral URL"}}:</b> {{var user_data.getReferralUrl()}}</li>
-    <li><b>{{trans "Logged In At"}}:</b> {{var user_data.getLoggedInAt()}}</li>
+    <li><b>{{trans "IP address"}}:</b> {{var user.getIpAddress()}}</li>
+    <li><b>{{trans "Browser Information"}}:</b> {{var user.getBrowserInformation()}}</li>
+    <li><b>{{trans "Login URL"}}:</b> {{var user.getLoginUrl()}}</li>
+    <li><b>{{trans "Referral URL"}}:</b> {{var user.getReferrerUrl()}}</li>
+    <li><b>{{trans "Logged In At"}}:</b> {{var user.getLoggedInAt()}}</li>
 </ul>
 
 <p>{{trans "If you have not authorized this action, please change the password for your account now or contact us immediately at %store_email" store_email=$store_email |escape}}{{depend store_phone}} {{trans "or call us at %store_phone" store_phone=$store_phone |escape}}{{/depend}}.</p>
