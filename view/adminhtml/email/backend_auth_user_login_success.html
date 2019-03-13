@@ -1,0 +1,50 @@
+<!--
+/**
+ * GiaPhuGroup Co., Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the GiaPhuGroup.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.giaphugroup.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    PHPCuong
+ * @package     PHPCuong_AdminSecurity
+ * @copyright   Copyright (c) 2019-2020 GiaPhuGroup Co., Ltd. All rights reserved. (http://www.giaphugroup.com/)
+ * @license     https://www.giaphugroup.com/LICENSE.txt
+ */
+-->
+<!--@subject {{trans "You have been successfully logged in at %store_name" store_name=$store.getFrontendName()}} @-->
+<!--@vars {
+"var store.getFrontendName()|escape":"Store Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Hello %name," name=$user_data.getName()}}</p>
+
+<p>{{trans "You have been successfully logged in at %store_name" store_name=$store.getFrontendName()}}</p>
+
+<p>{{trans "The following information we have collected"}}:</p>
+
+<ul>
+    <li><b>{{trans "IP address"}}:</b> {{var user_data.getIpAddress()}}</li>
+    <li><b>{{trans "Browser Information"}}:</b> {{var user_data.getBrowserInformation()}}</li>
+    <li><b>{{trans "Login URL"}}:</b> {{var user_data.getLoginUrl()}}</li>
+    <li><b>{{trans "Referral URL"}}:</b> {{var user_data.getReferralUrl()}}</li>
+    <li><b>{{trans "Logged In At"}}:</b> {{var user_data.getLoggedInAt()}}</li>
+</ul>
+
+<p>{{trans "If you have not authorized this action, please change the password for your account now or contact us immediately at %store_email" store_email=$store_email |escape}}{{depend store_phone}} {{trans "or call us at %store_phone" store_phone=$store_phone |escape}}{{/depend}}.</p>
+
+<p>{{trans "If you made this request, please ignore this email."}}</p>
+
+<p>{{trans "Best regards,"}}</p>
+{{var store.getFrontendName()}}
+
+{{template config_path="design/email/footer_template"}}
